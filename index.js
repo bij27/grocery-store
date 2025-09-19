@@ -25,8 +25,11 @@ const inventory = [
  * Prints out the name of each item in the given array.
  * @param {Item[]} items - array of items
  */
+
 function logNames(items) {
-  // TODO: use `forEach`
+  items.forEach((groceryItem) => {
+    console.log(groceryItem.name);
+  });
 }
 
 /**
@@ -34,7 +37,10 @@ function logNames(items) {
  * @returns {string[]} an array of item names in all uppercase
  */
 function getUppercaseNames(items) {
-  // TODO: use `map`
+  const upperCaseNames = items.map((groceryItem) =>
+    groceryItem.name.toUpperCase()
+  );
+  return upperCaseNames;
 }
 
 /**
@@ -43,7 +49,8 @@ function getUppercaseNames(items) {
  * @returns {Item} - the item in `items` with the given `id`
  */
 function getItemById(items, id) {
-  // TODO: use `find`
+  const retrievedItem = items.find((groceryItem) => groceryItem.id === id);
+  return retrievedItem;
 }
 
 /**
@@ -51,8 +58,14 @@ function getItemById(items, id) {
  * @param {string} name - name of the item to find
  * @returns {number} the price of the item named `name` if found
  */
-function getItemPriceByName(items, name) {
-  // TODO: use a loop!
+function getItemPriceByName(items, groceryName) {
+  for (const item of items) {
+    if (item.name === groceryName) {
+      return item.price;
+    }
+  }
+  // const retrievedItem = items.find((item) => item.name === groceryName);
+  // return retrievedItem.price;
 }
 
 /**
@@ -60,8 +73,11 @@ function getItemPriceByName(items, name) {
  * @param {string} category
  * @returns {Item[]} array of items that belong to the given `category`
  */
-function getItemsByCategory(items, category) {
-  // TODO: use `filter`
+function getItemsByCategory(items, groceryCategory) {
+  const results = items.filter(
+    (groceryItem) => groceryItem.category === groceryCategory
+  );
+  console.log(results);
 }
 
 /**
@@ -69,16 +85,23 @@ function getItemsByCategory(items, category) {
  * @returns {number} the total quantity of all items
  */
 function countItems(items) {
-  // TODO: use `reduce`
+  const totalQuantity = items.reduce(
+    (totalQuantity, currentItem) => (total += currentItem.quantity),
+    0
+  );
+  return totalQuantity;
 }
 
 /**
  * @param {Item[]} items - array of items
  * @returns {number} the cost of all given items
  */
-function getTotalPrice(items) {
-  // TODO: use `reduce`
-}
+function getTotalPrice(items) {}
+const totalPrice = items.reduce(
+  (totalValue, currentItem) => totalValue + currentItem.quantity * currentPrice,
+  0
+);
+return totalPrice;
 
 // === READ BUT DO NOT CHANGE THE CODE BELOW ===
 
